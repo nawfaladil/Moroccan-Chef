@@ -1,0 +1,1 @@
+My aim with this project is to deeply learn about rag architecture, so I will have multiple versions, and finish with a fully deployable, great version for users, and maybe even deploy it.
