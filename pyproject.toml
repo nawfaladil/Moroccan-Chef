@@ -6,7 +6,7 @@ authors = ["nawfaladil16 <nawfaladil16@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.15"
+python = ">=3.12,<3.14"
 pymupdf = "^1.27.1"
 pymupdf4llm = "^0.3.4"
 pymupdf-layout = "^1.27.1"
@@ -14,11 +14,15 @@ numpy = "^2.4.2"
 torch = "^2.10.0"
 torchvision = "^0.25.0"
 torchaudio = "^2.10.0"
-transformers = "^5.2.0"
 sentence-transformers = "^5.2.3"
 chromadb = "^1.5.0"
 langchain = "^1.2.10"
 langchain-ollama = "^1.0.1"
+langchain-community = "^0.4.1"
+langchain-text-splitters = "^1.1.1"
+unstructured = {extras = ["md"], version = "^0.20.8"}
+langchain-chroma = "^1.1.0"
+langchain-huggingface = "^1.2.0"
 
 
 [build-system]
