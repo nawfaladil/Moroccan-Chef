@@ -1,0 +1,312 @@
+{
+  "metadata": {
+    "total_queries": 50,
+    "positive_queries": 40,
+    "negative_queries": 10,
+    "query_template": "how to make {recipe_name}",
+    "positive_source": "data/recipe_chunks.json",
+    "negative_expected_recipe_name": "__NO_MATCH__"
+  },
+  "queries": [
+    {
+      "id": 1,
+      "query": "how to make Duck and prune tagine",
+      "expected_recipe_name": "Duck and prune tagine",
+      "should_match": true
+    },
+    {
+      "id": 2,
+      "query": "how to make Potato tagine with baked halloumi",
+      "expected_recipe_name": "Potato tagine with baked halloumi",
+      "should_match": true
+    },
+    {
+      "id": 3,
+      "query": "how to make Merguez sausages with crispy chickpeas and preserved lemon yogurt",
+      "expected_recipe_name": "Merguez sausages with crispy chickpeas and preserved lemon yogurt",
+      "should_match": true
+    },
+    {
+      "id": 4,
+      "query": "how to make Chicken tagine casserole",
+      "expected_recipe_name": "Chicken tagine casserole",
+      "should_match": true
+    },
+    {
+      "id": 5,
+      "query": "how to make Preserved lemons",
+      "expected_recipe_name": "Preserved lemons",
+      "should_match": true
+    },
+    {
+      "id": 6,
+      "query": "how to make Whole baked chicken with North African spices",
+      "expected_recipe_name": "Whole baked chicken with North African spices",
+      "should_match": true
+    },
+    {
+      "id": 7,
+      "query": "how to make Root vegetable and lentil tagine",
+      "expected_recipe_name": "Root vegetable and lentil tagine",
+      "should_match": true
+    },
+    {
+      "id": 8,
+      "query": "how to make Fruity lamb and olive tagine",
+      "expected_recipe_name": "Fruity lamb and olive tagine",
+      "should_match": true
+    },
+    {
+      "id": 9,
+      "query": "how to make Spicy beef harira",
+      "expected_recipe_name": "Spicy beef harira",
+      "should_match": true
+    },
+    {
+      "id": 10,
+      "query": "how to make Lamb, harissa and feta burgers",
+      "expected_recipe_name": "Lamb, harissa and feta burgers",
+      "should_match": true
+    },
+    {
+      "id": 11,
+      "query": "how to make Leftover chicken tagine",
+      "expected_recipe_name": "Leftover chicken tagine",
+      "should_match": true
+    },
+    {
+      "id": 12,
+      "query": "how to make Vegetable tagine",
+      "expected_recipe_name": "Vegetable tagine",
+      "should_match": true
+    },
+    {
+      "id": 13,
+      "query": "how to make Knorr’s one-pot easy chicken tagine",
+      "expected_recipe_name": "Knorr’s one-pot easy chicken tagine",
+      "should_match": true
+    },
+    {
+      "id": 14,
+      "query": "how to make Knorr’s one-pot fruity lamb tagine",
+      "expected_recipe_name": "Knorr’s one-pot fruity lamb tagine",
+      "should_match": true
+    },
+    {
+      "id": 15,
+      "query": "how to make Andi Oliver’s beetroot and walnut borek",
+      "expected_recipe_name": "Andi Oliver’s beetroot and walnut borek",
+      "should_match": true
+    },
+    {
+      "id": 16,
+      "query": "how to make Spiced lamb and herby quinoa crumble",
+      "expected_recipe_name": "Spiced lamb and herby quinoa crumble",
+      "should_match": true
+    },
+    {
+      "id": 17,
+      "query": "how to make Chermoula lamb leg steaks with minted cucumber yogurt",
+      "expected_recipe_name": "Chermoula lamb leg steaks with minted cucumber yogurt",
+      "should_match": true
+    },
+    {
+      "id": 18,
+      "query": "how to make Grilled mackerel, grapefruit and pesto freekeh salad",
+      "expected_recipe_name": "Grilled mackerel, grapefruit and pesto freekeh salad",
+      "should_match": true
+    },
+    {
+      "id": 19,
+      "query": "how to make Lentil, spinach and cumin soup",
+      "expected_recipe_name": "Lentil, spinach and cumin soup",
+      "should_match": true
+    },
+    {
+      "id": 20,
+      "query": "how to make Warm quinoa salad with broad beans and pomegranate",
+      "expected_recipe_name": "Warm quinoa salad with broad beans and pomegranate",
+      "should_match": true
+    },
+    {
+      "id": 21,
+      "query": "how to make Spicy chicken, chickpea and fennel salad",
+      "expected_recipe_name": "Spicy chicken, chickpea and fennel salad",
+      "should_match": true
+    },
+    {
+      "id": 22,
+      "query": "how to make Donal Skehan’s ultimate chicken tagine",
+      "expected_recipe_name": "Donal Skehan’s ultimate chicken tagine",
+      "should_match": true
+    },
+    {
+      "id": 23,
+      "query": "how to make Lentils and pasta with tamarind, sumac and pomegranate",
+      "expected_recipe_name": "Lentils and pasta with tamarind, sumac and pomegranate",
+      "should_match": true
+    },
+    {
+      "id": 24,
+      "query": "how to make Moroccan lamb tagine",
+      "expected_recipe_name": "Moroccan lamb tagine",
+      "should_match": true
+    },
+    {
+      "id": 25,
+      "query": "how to make Pomegranate and chicken stew",
+      "expected_recipe_name": "Pomegranate and chicken stew",
+      "should_match": true
+    },
+    {
+      "id": 26,
+      "query": "how to make Pomegranate and orange blossom bakewell tart",
+      "expected_recipe_name": "Pomegranate and orange blossom bakewell tart",
+      "should_match": true
+    },
+    {
+      "id": 27,
+      "query": "how to make Quick harissa lamb and red onions with herby quinoa",
+      "expected_recipe_name": "Quick harissa lamb and red onions with herby quinoa",
+      "should_match": true
+    },
+    {
+      "id": 28,
+      "query": "how to make Chana masala",
+      "expected_recipe_name": "Chana masala",
+      "should_match": true
+    },
+    {
+      "id": 29,
+      "query": "how to make Zigni berbere (spicy chicken stew)",
+      "expected_recipe_name": "Zigni berbere (spicy chicken stew)",
+      "should_match": true
+    },
+    {
+      "id": 30,
+      "query": "how to make Basbousa (sweet semolina cake)",
+      "expected_recipe_name": "Basbousa (sweet semolina cake)",
+      "should_match": true
+    },
+    {
+      "id": 31,
+      "query": "how to make Eric Lanlard’s clementine and pomegranate cake (gluten-free)",
+      "expected_recipe_name": "Eric Lanlard’s clementine and pomegranate cake (gluten-free)",
+      "should_match": true
+    },
+    {
+      "id": 32,
+      "query": "how to make Almond, pistachio and turkish delight m’hencha",
+      "expected_recipe_name": "Almond, pistachio and turkish delight m’hencha",
+      "should_match": true
+    },
+    {
+      "id": 33,
+      "query": "how to make Venison and parsnip tagine with buttered herb couscous",
+      "expected_recipe_name": "Venison and parsnip tagine with buttered herb couscous",
+      "should_match": true
+    },
+    {
+      "id": 34,
+      "query": "how to make Lamb and quince tagine with chermoula and buttered couscous",
+      "expected_recipe_name": "Lamb and quince tagine with chermoula and buttered couscous",
+      "should_match": true
+    },
+    {
+      "id": 35,
+      "query": "how to make Roasted aubergines with buttermilk dressing and Persian rice",
+      "expected_recipe_name": "Roasted aubergines with buttermilk dressing and Persian rice",
+      "should_match": true
+    },
+    {
+      "id": 36,
+      "query": "how to make Wild rice salad with peas, pea shoots and green harissa",
+      "expected_recipe_name": "Wild rice salad with peas, pea shoots and green harissa",
+      "should_match": true
+    },
+    {
+      "id": 37,
+      "query": "how to make Chicken briouats",
+      "expected_recipe_name": "Chicken briouats",
+      "should_match": true
+    },
+    {
+      "id": 38,
+      "query": "how to make Spiced chicken with quinoa and lemon zest",
+      "expected_recipe_name": "Spiced chicken with quinoa and lemon zest",
+      "should_match": true
+    },
+    {
+      "id": 39,
+      "query": "how to make Lemon and garlic chicken with couscous",
+      "expected_recipe_name": "Lemon and garlic chicken with couscous",
+      "should_match": true
+    },
+    {
+      "id": 40,
+      "query": "how to make Couscous with preserved lemons",
+      "expected_recipe_name": "Couscous with preserved lemons",
+      "should_match": true
+    },
+    {
+      "id": 41,
+      "query": "how to make Lunar saffron cloud risotto",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 42,
+      "query": "how to make Arctic blueberry miso ramen",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 43,
+      "query": "how to make Caribbean mango cocoa lasagna",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 44,
+      "query": "how to make Himalayan truffle udon carbonara",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 45,
+      "query": "how to make Volcano pineapple kimchi pie",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 46,
+      "query": "how to make Nordic beetroot espresso tacos",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 47,
+      "query": "how to make Sahara coconut matcha gnocchi",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 48,
+      "query": "how to make Atlantis seaweed chocolate paella",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 49,
+      "query": "how to make Alpine vanilla chili pho",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    },
+    {
+      "id": 50,
+      "query": "how to make Meteorite smoky lavender burrito",
+      "expected_recipe_name": "__NO_MATCH__",
+      "should_match": false
+    }
+  ]
+}
