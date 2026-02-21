@@ -1,55 +1,81 @@
 import os
 import shutil
-from langchain_community.document_loaders import DirectoryLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_core.documents import Document
+import json
+from typing import List, Dict, Any
+
 from langchain_community.vectorstores import Chroma
+from langchain_core.documents import Document
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
+import torch
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_dir = os.path.join(script_dir, '../../data')
+data_dir = os.path.join(script_dir, "../../data")
+chroma_path = os.path.join(data_dir, "chroma")
 
-def load_documents():
-    loader = DirectoryLoader(data_dir+'/markdowns', glob="*.md")
-    documents = loader.load()
+JSON_PATH = os.path.join(data_dir, "recipe_chunks.json")
+
+def make_documents(json_path: str) -> List[Document]:
+    if not os.path.exists(json_path):
+        raise FileNotFoundError(f"JSON file not found: {json_path}")
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        recipes: Dict[str, Any] = json.load(f)
+
+    documents: List[Document] = []
+    for recipe in recipes.values():
+        rid = recipe.get("id")
+        content = recipe.get("content", "")
+        meta_list = recipe.get("metadatas", [])
+        meta = meta_list[0] if (isinstance(meta_list, list) and len(meta_list) > 0) else {}
+
+        # Normalize metadata
+        meta = dict(meta) if isinstance(meta, dict) else {}
+        meta["recipe_id"] = str(rid) if rid is not None else None
+
+        documents.append(
+            Document(
+                page_content=content,
+                metadata=meta
+            )
+        )
+
     return documents
 
-def split_text(documents: list[Document]):
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=200,
-        length_function=len,
-        add_start_index=True,
-    )
-    chunks = text_splitter.split_documents(documents)
-    print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
+def save_to_chroma(docs: List[Document], reset_db: bool = True) -> None:
+    if reset_db and os.path.exists(chroma_path):
+        shutil.rmtree(chroma_path)
 
-    return chunks
-
-def save_to_chroma(chunks: list[Document]):
-    if os.path.exists(data_dir+'/chroma'):
-        shutil.rmtree(data_dir+'/chroma')
-        
     model_name = "BAAI/bge-small-en-v1.5"
-    model_kwargs = {"device": "cpu"}
+    model_kwargs = {"device": device}
     encode_kwargs = {"normalize_embeddings": True}
+
     hf = HuggingFaceBgeEmbeddings(
-        model_name=model_name, model_kwargs=model_kwargs, encode_kwargs=encode_kwargs
+        model_name=model_name,
+        model_kwargs=model_kwargs,
+        encode_kwargs=encode_kwargs,
     )
 
-    Chroma.from_documents(
-        chunks, embedding=hf, persist_directory=data_dir+'/chroma'
+    db = Chroma.from_documents(
+        docs,
+        embedding=hf,
+        persist_directory=chroma_path
     )
 
-    print(f"Saved {len(chunks)} chunks to {data_dir+'/chroma'}.")
+    # Be explicit (safe across versions)
+    try:
+        db.persist()
+    except Exception:
+        pass
+
+    print(f"Saved {len(docs)} recipes to {chroma_path} using device={device}.")
 
 def generate_data_store():
-    documents = load_documents()
-    chunks = split_text(documents)
-    save_to_chroma(chunks)
+    docs = make_documents(JSON_PATH)
+    save_to_chroma(docs, reset_db=True)
 
 def main():
     generate_data_store()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
