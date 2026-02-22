@@ -9,13 +9,10 @@ def main():
     args = parser.parse_args()
     orchestrator = Orchestrator()
     results = orchestrator.respond(args.query_text)
-    if results:
-        generated_response, sources_scores = results
-        print(generated_response)
-        for source, score in sources_scores:
-            print(f"\nSource: {source} | score={score:.4f}")
-    else:
-        print("no such recipe in our database.")
+    generated_response, sources = results
+    print(generated_response)
+    for source in sources:
+        print(f"\nSource: {source}")
 
 if __name__ == "__main__":
     main()

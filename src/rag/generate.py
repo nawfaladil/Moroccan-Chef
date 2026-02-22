@@ -26,13 +26,13 @@ class Generator:
         """
         self.prompt_template = ChatPromptTemplate.from_template(prompt_template)
 
-    def generate(self, query_text: str, retrieval_results: list[tuple[Document, float]]):
+    def generate(self, query_text: str, retrieval_results: list[Document]):
         context_text = "\n\n---\n\n".join(
-            f"{doc.page_content}" for doc, _score in retrieval_results
+            f"{doc.page_content}" for doc in retrieval_results
         )
         prompt = self.prompt_template.format(context=context_text, question=query_text)
         print(prompt)
-        sources_scores = [(doc.metadata.get("recipe_name", "unknown").replace("Recipe Name : ", "")
-                   .strip(), _score) for doc, _score in retrieval_results]
+        sources = [doc.metadata.get("recipe_name", "unknown").replace("Recipe Name : ", "")
+                   .strip() for doc in retrieval_results]
         model_response = self.model.invoke(prompt)
-        return (model_response.content, sources_scores)
+        return (model_response.content, sources)
