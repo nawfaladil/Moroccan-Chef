@@ -1,0 +1,312 @@
+{
+  "metadata": {
+    "total_queries": 50,
+    "positive_queries": 50,
+    "negative_queries": 0,
+    "query_template": "paraphrased natural language queries",
+    "positive_source": "data/recipe_chunks.json",
+    "expected_field": "expected_recipe_id"
+  },
+  "queries": [
+    {
+      "id": 1,
+      "query": "how can I cook a duck tagine with prunes",
+      "should_match": true,
+      "expected_recipe_id": 0
+    },
+    {
+      "id": 2,
+      "query": "what's the method for a potato tagine topped with baked halloumi",
+      "should_match": true,
+      "expected_recipe_id": 1
+    },
+    {
+      "id": 3,
+      "query": "how do I make merguez sausages with crunchy chickpeas and preserved-lemon yogurt",
+      "should_match": true,
+      "expected_recipe_id": 2
+    },
+    {
+      "id": 4,
+      "query": "how do I bake a chicken tagine-style casserole",
+      "should_match": true,
+      "expected_recipe_id": 3
+    },
+    {
+      "id": 5,
+      "query": "how do I preserve lemons in salt brine at home",
+      "should_match": true,
+      "expected_recipe_id": 4
+    },
+    {
+      "id": 6,
+      "query": "how can I roast a whole chicken with North African spices",
+      "should_match": true,
+      "expected_recipe_id": 5
+    },
+    {
+      "id": 7,
+      "query": "how do I prepare a root-veg and lentil tagine",
+      "should_match": true,
+      "expected_recipe_id": 6
+    },
+    {
+      "id": 8,
+      "query": "how do I cook lamb tagine with olives and dried fruit",
+      "should_match": true,
+      "expected_recipe_id": 7
+    },
+    {
+      "id": 9,
+      "query": "how do I make a spicy Moroccan beef harira soup",
+      "should_match": true,
+      "expected_recipe_id": 8
+    },
+    {
+      "id": 10,
+      "query": "how can I make lamb burgers with harissa and feta",
+      "should_match": true,
+      "expected_recipe_id": 9
+    },
+    {
+      "id": 11,
+      "query": "what can I do to turn leftover chicken into a tagine",
+      "should_match": true,
+      "expected_recipe_id": 10
+    },
+    {
+      "id": 12,
+      "query": "how do I cook a hearty vegetable tagine",
+      "should_match": true,
+      "expected_recipe_id": 11
+    },
+    {
+      "id": 13,
+      "query": "how to make the easy one-pot chicken tagine from Knorr",
+      "should_match": true,
+      "expected_recipe_id": 12
+    },
+    {
+      "id": 14,
+      "query": "how to cook Knorr's one-pot lamb tagine with fruit",
+      "should_match": true,
+      "expected_recipe_id": 13
+    },
+    {
+      "id": 15,
+      "query": "how can I make Andi Oliver beetroot and walnut borek",
+      "should_match": true,
+      "expected_recipe_id": 14
+    },
+    {
+      "id": 16,
+      "query": "how do I prepare spiced lamb with a herby quinoa crumble",
+      "should_match": true,
+      "expected_recipe_id": 15
+    },
+    {
+      "id": 17,
+      "query": "how to cook chermoula lamb leg steaks with mint-cucumber yogurt",
+      "should_match": true,
+      "expected_recipe_id": 16
+    },
+    {
+      "id": 18,
+      "query": "how can I make a mackerel freekeh salad with grapefruit and pesto",
+      "should_match": true,
+      "expected_recipe_id": 17
+    },
+    {
+      "id": 19,
+      "query": "how do I make lentil soup with spinach and cumin",
+      "should_match": true,
+      "expected_recipe_id": 18
+    },
+    {
+      "id": 20,
+      "query": "how do I make warm quinoa with broad beans and pomegranate",
+      "should_match": true,
+      "expected_recipe_id": 19
+    },
+    {
+      "id": 21,
+      "query": "how can I prepare a spicy salad with chicken, chickpeas, and fennel",
+      "should_match": true,
+      "expected_recipe_id": 20
+    },
+    {
+      "id": 22,
+      "query": "how do I cook Donal Skehan's ultimate chicken tagine",
+      "should_match": true,
+      "expected_recipe_id": 21
+    },
+    {
+      "id": 23,
+      "query": "how to make lentils and pasta with tamarind, sumac, and pomegranate",
+      "should_match": true,
+      "expected_recipe_id": 22
+    },
+    {
+      "id": 24,
+      "query": "how do I slow-cook a classic Moroccan lamb tagine",
+      "should_match": true,
+      "expected_recipe_id": 23
+    },
+    {
+      "id": 25,
+      "query": "how do I make a chicken stew with pomegranate",
+      "should_match": true,
+      "expected_recipe_id": 24
+    },
+    {
+      "id": 26,
+      "query": "how can I bake a pomegranate and orange-blossom bakewell tart",
+      "should_match": true,
+      "expected_recipe_id": 25
+    },
+    {
+      "id": 27,
+      "query": "how do I make quick harissa lamb with red onions and herby quinoa",
+      "should_match": true,
+      "expected_recipe_id": 26
+    },
+    {
+      "id": 28,
+      "query": "how do I cook restaurant-style chickpea curry (chana masala)",
+      "should_match": true,
+      "expected_recipe_id": 27
+    },
+    {
+      "id": 29,
+      "query": "how to make zigni berbere, the spicy chicken stew",
+      "should_match": true,
+      "expected_recipe_id": 28
+    },
+    {
+      "id": 30,
+      "query": "how can I bake basbousa semolina cake",
+      "should_match": true,
+      "expected_recipe_id": 29
+    },
+    {
+      "id": 31,
+      "query": "how do I make Eric Lanlard's clementine-pomegranate gluten-free cake",
+      "should_match": true,
+      "expected_recipe_id": 30
+    },
+    {
+      "id": 32,
+      "query": "how to make a sweet m'hencha pastry with almonds, pistachios, and Turkish delight",
+      "should_match": true,
+      "expected_recipe_id": 31
+    },
+    {
+      "id": 33,
+      "query": "how do I cook venison and parsnip tagine with buttered herb couscous",
+      "should_match": true,
+      "expected_recipe_id": 32
+    },
+    {
+      "id": 34,
+      "query": "how can I make lamb and quince tagine with chermoula couscous",
+      "should_match": true,
+      "expected_recipe_id": 33
+    },
+    {
+      "id": 35,
+      "query": "how to roast aubergines and serve them with buttermilk dressing and Persian rice",
+      "should_match": true,
+      "expected_recipe_id": 34
+    },
+    {
+      "id": 36,
+      "query": "how do I make wild rice salad with peas, pea shoots, and green harissa",
+      "should_match": true,
+      "expected_recipe_id": 35
+    },
+    {
+      "id": 37,
+      "query": "how can I fold and cook chicken briouats",
+      "should_match": true,
+      "expected_recipe_id": 36
+    },
+    {
+      "id": 38,
+      "query": "how do I cook spiced chicken with quinoa and lemon zest",
+      "should_match": true,
+      "expected_recipe_id": 37
+    },
+    {
+      "id": 39,
+      "query": "how to make lemon-garlic chicken served with couscous",
+      "should_match": true,
+      "expected_recipe_id": 38
+    },
+    {
+      "id": 40,
+      "query": "how do I prepare couscous flavored with preserved lemon",
+      "should_match": true,
+      "expected_recipe_id": 39
+    },
+    {
+      "id": 41,
+      "query": "what is an easy way to cook lamb tagine",
+      "should_match": true,
+      "expected_recipe_id": 40
+    },
+    {
+      "id": 42,
+      "query": "how to make a spiced chicken pilaf with mint yogurt",
+      "should_match": true,
+      "expected_recipe_id": 41
+    },
+    {
+      "id": 43,
+      "query": "how do I make falafels with tahini dressing",
+      "should_match": true,
+      "expected_recipe_id": 42
+    },
+    {
+      "id": 44,
+      "query": "how can I prepare giant couscous with spiced lamb, feta, and almonds",
+      "should_match": true,
+      "expected_recipe_id": 43
+    },
+    {
+      "id": 45,
+      "query": "how to make Moroccan-style roasted vegetables with couscous",
+      "should_match": true,
+      "expected_recipe_id": 44
+    },
+    {
+      "id": 46,
+      "query": "how do I cook lamb tagine with dates and spinach",
+      "should_match": true,
+      "expected_recipe_id": 45
+    },
+    {
+      "id": 47,
+      "query": "how can I marinate lamb cutlets and serve them with smoky chickpeas",
+      "should_match": true,
+      "expected_recipe_id": 46
+    },
+    {
+      "id": 48,
+      "query": "how to make North African chicken with honey and saffron",
+      "should_match": true,
+      "expected_recipe_id": 47
+    },
+    {
+      "id": 49,
+      "query": "how do I brew North African-style mint tea",
+      "should_match": true,
+      "expected_recipe_id": 48
+    },
+    {
+      "id": 50,
+      "query": "how can I make harissa paste from scratch",
+      "should_match": true,
+      "expected_recipe_id": 49
+    }
+  ]
+}

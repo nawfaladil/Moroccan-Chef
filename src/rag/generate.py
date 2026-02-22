@@ -9,6 +9,7 @@ class Generator:
         You are a cooking assistant.
 
         Use ONLY the context below.
+        select the single most relevant recipe.
 
         Return exactly:
         - Title
