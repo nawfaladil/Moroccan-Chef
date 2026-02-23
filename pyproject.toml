@@ -25,6 +25,8 @@ langchain-huggingface = "^1.2.0"
 pandas = "^3.0.1"
 torch = {version = "^2.10.0+cu126", source = "torch_cuda"}
 rank-bm25 = "^0.2.2"
+flashrank = "^0.2.10"
+fastapi = "^0.131.0"
 
 
 [[tool.poetry.source]]

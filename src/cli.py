@@ -1,5 +1,5 @@
 import argparse
-from src.rag.main import Orchestrator
+from src.rag.orchestrate import Orchestrator
 
 def main():
     # Create CLI.

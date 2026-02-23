@@ -832,6 +832,29 @@ files = [
 dev = ["coverage", "pytest (>=7.4.4)"]
 
 [[package]]
+name = "fastapi"
+version = "0.131.0"
+description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+optional = false
+python-versions = ">=3.10"
+files = [
+    {file = "fastapi-0.131.0-py3-none-any.whl", hash = "sha256:ed0e53decccf4459de78837ce1b867cd04fa9ce4579497b842579755d20b405a"},
+    {file = "fastapi-0.131.0.tar.gz", hash = "sha256:6531155e52bee2899a932c746c9a8250f210e3c3303a5f7b9f8a808bfe0548ff"},
+]
+
+[package.dependencies]
+annotated-doc = ">=0.0.2"
+pydantic = ">=2.7.0"
+starlette = ">=0.40.0,<1.0.0"
+typing-extensions = ">=4.8.0"
+typing-inspection = ">=0.4.2"
+
+[package.extras]
+all = ["email-validator (>=2.0.0)", "fastapi-cli[standard] (>=0.0.8)", "httpx (>=0.23.0,<1.0.0)", "itsdangerous (>=1.1.0)", "jinja2 (>=3.1.5)", "pydantic-extra-types (>=2.0.0)", "pydantic-settings (>=2.0.0)", "python-multipart (>=0.0.18)", "pyyaml (>=5.3.1)", "uvicorn[standard] (>=0.12.0)"]
+standard = ["email-validator (>=2.0.0)", "fastapi-cli[standard] (>=0.0.8)", "httpx (>=0.23.0,<1.0.0)", "jinja2 (>=3.1.5)", "pydantic-extra-types (>=2.0.0)", "pydantic-settings (>=2.0.0)", "python-multipart (>=0.0.18)", "uvicorn[standard] (>=0.12.0)"]
+standard-no-fastapi-cloud-cli = ["email-validator (>=2.0.0)", "fastapi-cli[standard-no-fastapi-cloud-cli] (>=0.0.8)", "httpx (>=0.23.0,<1.0.0)", "jinja2 (>=3.1.5)", "pydantic-extra-types (>=2.0.0)", "pydantic-settings (>=2.0.0)", "python-multipart (>=0.0.18)", "uvicorn[standard] (>=0.12.0)"]
+
+[[package]]
 name = "filelock"
 version = "3.24.3"
 description = "A platform independent file lock."
@@ -852,6 +875,27 @@ files = [
     {file = "filetype-1.2.0-py2.py3-none-any.whl", hash = "sha256:7ce71b6880181241cf7ac8697a2f1eb6a8bd9b429f7ad6d27b8db9ba5f1c2d25"},
     {file = "filetype-1.2.0.tar.gz", hash = "sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb"},
 ]
+
+[[package]]
+name = "flashrank"
+version = "0.2.10"
+description = "Ultra lite & Super fast SoTA cross-encoder based re-ranking for your search & retrieval pipelines."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "FlashRank-0.2.10-py3-none-any.whl", hash = "sha256:5d3272ae657d793c132d1e7917ed9e2adf49e0e1c60735583a67b051c6f0434a"},
+    {file = "FlashRank-0.2.10.tar.gz", hash = "sha256:f8f82a25c32fdfc668a09dc4089421d6aab8e7f71308424b541f40bb3f01d9db"},
+]
+
+[package.dependencies]
+numpy = "*"
+onnxruntime = "*"
+requests = "*"
+tokenizers = "*"
+tqdm = "*"
+
+[package.extras]
+listwise = ["llama-cpp-python (==0.2.76)"]
 
 [[package]]
 name = "flatbuffers"
@@ -5196,6 +5240,24 @@ pymysql = ["pymysql"]
 sqlcipher = ["sqlcipher3_binary"]
 
 [[package]]
+name = "starlette"
+version = "0.52.1"
+description = "The little ASGI library that shines."
+optional = false
+python-versions = ">=3.10"
+files = [
+    {file = "starlette-0.52.1-py3-none-any.whl", hash = "sha256:0029d43eb3d273bc4f83a08720b4912ea4b071087a3b48db01b7c839f7954d74"},
+    {file = "starlette-0.52.1.tar.gz", hash = "sha256:834edd1b0a23167694292e94f597773bc3f89f362be6effee198165a35d62933"},
+]
+
+[package.dependencies]
+anyio = ">=3.6.2,<5"
+typing-extensions = {version = ">=4.10.0", markers = "python_version < \"3.13\""}
+
+[package.extras]
+full = ["httpx (>=0.27.0,<0.29.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.18)", "pyyaml"]
+
+[[package]]
 name = "sympy"
 version = "1.14.0"
 description = "Computer algebra system (CAS) in Python"
@@ -6584,4 +6646,4 @@ cffi = ["cffi (>=1.17,<2.0)", "cffi (>=2.0.0b)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.14"
-content-hash = "0c64ec3693035bed4956f51aa6a38941dfe03f4a663a07900033cc113b71c6b1"
+content-hash = "8bfe1029e4a2854300c61cfa70ee5f202e1fa0483d2913f03ff8efede53ab84f"

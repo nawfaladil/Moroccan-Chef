@@ -28,17 +28,11 @@ class Retriever:
         bm25_retriever = BM25Retriever.from_documents(documents, k=k)
         self.hybrid_retriever = EnsembleRetriever(
             retrievers=[vector_retriever, bm25_retriever],
-            weights=[0.9, 0.1]
+            weights=[0.8, 0.2]
         )
 
     def retrieve(self, query_text: str):
         return self.hybrid_retriever.invoke(query_text)
-
-    # def validate_retrieval(self, retrievals: list[tuple[Document, float]], threshold=0.35):
-    #     for doc, score in retrievals:
-    #         if score <= 0.35:
-    #             return True
-    #     return False
 
 def test_retriever(k=1):
     retriever = Retriever(k=k)

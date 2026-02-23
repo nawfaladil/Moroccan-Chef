@@ -4,6 +4,7 @@ from typing import Any, Optional
 from langchain_core.documents import Document
 
 from src.rag.retrieve import Retriever
+from src.rag.route_query import QueryRouter
 
 
 @dataclass
@@ -22,6 +23,7 @@ class RetrieverEvaluator:
         k: int=3
     ):
         self.retriever = retriever if retriever is not None else Retriever(data_path, k=k)
+        self.router = QueryRouter()
 
         with open(test_queries_path, "r", encoding="utf-8") as f:
             self.test_payload = json.load(f)
@@ -37,7 +39,9 @@ class RetrieverEvaluator:
         for q in self.queries:
             query_text = q["query"]
             gt_id = q["expected_recipe_id"]
-
+            print(f"evaluating query: {query_text}\n")
+            query_text = self.router.reroute_query(query_text)
+            print(f"rerouted query to : {query_text}\n")
             results = self.retriever.retrieve(query_text)
             results = results or []  # None -> []
 
@@ -49,7 +53,6 @@ class RetrieverEvaluator:
             n += 1
 
             if verbose:
-                print(f"evaluating query: {query_text}")
                 top_doc = results[0]
                 top_name = top_doc.metadata.get("recipe_name", "unknown").replace("Recipe Name : ", "").strip()
                 top_id = top_doc.metadata.get("recipe_id", "missing")
