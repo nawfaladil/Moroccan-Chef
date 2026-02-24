@@ -1,180 +1,133 @@
-# 🍳 Recipe RAG CLI (v1)
+# Cooking Assistant (Moroccan Recipe RAG)
 
-A lightweight Retrieval-Augmented Generation (RAG) system for answering questions about recipes using embeddings, ChromaDB, and an LLM — all from the command line.
+A retrieval-augmented cooking assistant that answers recipe questions from a local Moroccan recipes dataset.
 
----
+It includes:
+- Hybrid retrieval (dense embeddings + BM25)
+- Query routing for recipe-focused search
+- LLM generation constrained to retrieved context
+- FastAPI backend
+- Streamlit frontend
+- CLI and retrieval evaluation scripts
 
-## 📌 Overview
+## Project Architecture
 
-This project implements a minimal, reproducible RAG pipeline:
+Query flow:
+1. User query (CLI / API / Streamlit)
+2. Query router rewrites the query to a recipe-search form
+3. Hybrid retriever fetches top-k recipe chunks from ChromaDB
+4. Generator prompts an Ollama model with retrieved context
+5. Response returned with source recipe names
 
-- 📄 Markdown recipes as source data  
-- ✂️ Chunking + JSONL storage  
-- 🧠 Embeddings stored in Chroma  
-- 🔎 Top-k semantic retrieval  
-- 🤖 LLM generation with sources  
-- 💻 Simple CLI interface  
+Core modules:
+- `src/rag/route_query.py`: query normalization/routing with `qwen2.5:1.5b`
+- `src/rag/retrieve.py`: Chroma + BM25 ensemble retrieval
+- `src/rag/generate.py`: answer generation with `qwen3:4b`
+- `src/rag/orchestrate.py`: end-to-end orchestration
 
----
+## Repository Structure
 
-# 🏗 Architecture
+```text
+src/
+  backend/main.py         FastAPI app (`/health`, `/generate/{query_text}`)
+  frontend/streamlit.py   Simple Streamlit UI
+  rag/                    Router, retriever, generator, orchestrator
+  index/indexer.py        Builds/rebuilds Chroma index from JSON chunks
+  eval/evaluate.py        Hit@k / MRR@k evaluation
+  cli.py                  Command-line query interface
 
-## Data Flow Diagram
-
-### 🧱 Ingest / Index (One-Time or Occasional)
-
-```
-recipes.md
-    ↓
-chunks.jsonl
-    ↓ (embed)
-Chroma DB (persist/recipes_v1)
-```
-
-**Process:**
-
-1. Parse `recipes.md`
-2. Split into chunks
-3. Save chunks to `chunks.jsonl`
-4. Generate embeddings
-5. Store vectors in Chroma (persistent)
-
----
-
-### 💬 Run (Per Question)
-
-```
-CLI question
-    ↓ (embed query)
-Chroma top-k
-    ↓ (select best-1)
-LLM
-    ↓
-Answer + Sources footer
+data/
+  recipe_chunks.json      Recipe chunk source for indexing
+  chroma/                 Persisted vector store
+  original_set/           Original CSV dataset
 ```
 
-**Process:**
+## Requirements
 
-1. User asks a question via CLI  
-2. Embed the query  
-3. Retrieve top-k relevant chunks  
-4. Select best match  
-5. Send context to LLM  
-6. Return answer with source attribution  
+- Python `>=3.12,<3.14`
+- [Poetry](https://python-poetry.org/)
+- [Ollama](https://ollama.com/) running locally
+- Ollama models used by default:
+  - `qwen2.5:1.5b` (query router)
+  - `qwen3:4b` (answer generation)
 
----
+Optional:
+- CUDA-enabled GPU for faster embedding/model workloads
 
-# 📁 Project Structure (v1)
-
-```
-.
-├── data/
-│   ├── recipes.md
-│   ├── chunks.jsonl
-│   └── chroma/                # Chroma persist directory
-│
-├── src/
-│   ├── parse/                 # Optional (for reproducibility)
-│   ├── index/
-│   │   └── build_index.py
-│   ├── rag/
-│   │   ├── retrieve.py
-│   │   ├── prompt.py
-│   │   └── generate.py
-│   └── cli.py
-│
-├── configs/
-│   └── v1.yaml                # paths, embedding model, k, LLM model
-│
-├── logs/
-│   └── queries.jsonl
-│
-└── docs/
-    └── architecture_v1.md     # Add diagram image later
-```
-
----
-
-# ⚙️ Configuration
-
-Example `configs/v1.yaml`:
-
-```yaml
-paths:
-  recipes: data/recipes.md
-  chunks: data/chunks.jsonl
-  chroma: data/chroma/
-
-embedding:
-  model: nomic-embed-text
-  k: 5
-
-llm:
-  model: llama3
-```
-
----
-
-# 🚀 Usage
-
-### 1️⃣ Build the Index
+## Setup
 
 ```bash
-python src/index/build_index.py
+# 1) Install dependencies
+poetry install
+
+# 2) Make sure Ollama is running, then pull models
+ollama pull qwen2.5:1.5b
+ollama pull qwen3:4b
 ```
 
-### 2️⃣ Ask a Question
+## Build or Rebuild the Vector Index
+
+Run when `data/recipe_chunks.json` changes:
 
 ```bash
-python src/cli.py "How do I make fluffy pancakes?"
+poetry run python -m src.index.indexer
 ```
 
----
+This writes/updates the Chroma database under `data/chroma/`.
 
-# 🧠 System Components
+## Run the App
 
-| Layer        | Responsibility |
-|-------------|----------------|
-| Data Layer  | Markdown → JSONL chunks |
-| Vector Layer | Embeddings stored in Chroma |
-| Retrieval Layer | Top-k semantic search |
-| Generation Layer | Prompt + context → LLM |
-| Interface | CLI |
+### 1) Start backend API
 
----
-
-# 📝 Logging
-
-All queries are logged for evaluation and debugging:
-
-```
-logs/queries.jsonl
+```bash
+poetry run uvicorn src.backend.main:app --reload
 ```
 
-Each entry may include:
+- Health check: `GET http://127.0.0.1:8000/health`
+- Generate answer: `GET http://127.0.0.1:8000/generate/{query_text}`
 
-- User question  
-- Retrieved chunks  
-- Selected context  
-- Final answer  
+### 2) Start Streamlit frontend
 
----
+In a second terminal:
 
-# 🔮 Future Improvements
+```bash
+poetry run streamlit run src/frontend/streamlit.py
+```
 
-- Evaluation pipeline  
-- Reranking step  
-- Streaming responses  
-- Web UI  
-- Structured source citations  
-- Multi-document support  
+The frontend calls the backend at `http://127.0.0.1:8000`.
 
----
+## CLI Usage
 
-# 🏷 Version
+```bash
+poetry run python -m src.cli "how do i make chicken tagine"
+```
 
-**v1 — Minimal, reproducible, CLI-based RAG system**
+The CLI prints:
+- Generated answer
+- Retrieved source recipe name(s)
 
----
+## Evaluation
 
-Built for clarity, iteration, and extensibility.
+Run retrieval evaluation (Hit@k and MRR@k):
+
+```bash
+poetry run python -m src.eval.evaluate
+```
+
+Evaluation queries are in:
+- `src/eval/evaluation_queries_50_paraphrased.json`
+
+## Notes and Current Limitations
+
+- Some default paths in `src/rag/retrieve.py` and `src/eval/evaluate.py` are absolute Windows paths. For portability, update them to relative paths or pass paths explicitly.
+- `src/frontend/streamlit.py` currently sends a request whenever the input changes; adding a submit button can reduce unnecessary requests.
+- The backend endpoint uses path parameters for full query text. URL encoding is required for special characters.
+
+## Tech Stack
+
+- FastAPI, Streamlit
+- LangChain + Ollama
+- ChromaDB
+- HuggingFace BGE embeddings (`BAAI/bge-small-en-v1.5`)
+- BM25 + ensemble retrieval
+- Poetry for dependency management
