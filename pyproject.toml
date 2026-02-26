@@ -1,45 +1,57 @@
-[tool.poetry]
+[project]
 name = "cooking-assistant"
 version = "0.1.0"
 description = ""
-authors = ["nawfaladil16 <nawfaladil16@gmail.com>"]
 readme = "README.md"
+authors = [{ name = "nawfaladil16", email = "nawfaladil16@gmail.com" }]
+requires-python = ">=3.13,<3.14"
 
-[tool.poetry.dependencies]
-python = ">=3.12,<3.14"
-pymupdf = "^1.27.1"
-pymupdf4llm = "^0.3.4"
-pymupdf-layout = "^1.27.1"
-numpy = "^2.4.2"
-torchvision = "^0.25.0"
-torchaudio = "^2.10.0"
-sentence-transformers = "^5.2.3"
-chromadb = "^1.5.0"
-langchain = "^1.2.10"
-langchain-ollama = "^1.0.1"
-langchain-community = "^0.4.1"
-langchain-text-splitters = "^1.1.1"
-unstructured = {extras = ["md"], version = "^0.20.8"}
-langchain-chroma = "^1.1.0"
-langchain-huggingface = "^1.2.0"
-pandas = ">=1.4.0,<3"
-torch = {version = "^2.10.0+cu126", source = "torch_cuda"}
-rank-bm25 = "^0.2.2"
-flashrank = "^0.2.10"
-fastapi = {extras = ["standard"], version = "^0.131.0"}
-streamlit = "^1.54.0"
+dependencies = [
+  "pymupdf>=1.27.1,<2",
+  "pymupdf4llm>=0.3.4,<0.4",
+  "pymupdf-layout>=1.27.1,<2",
+  "numpy>=2.4.2,<3",
+  "torchvision>=0.25.0,<0.26",
+  "torchaudio>=2.10.0,<2.11",
+  "sentence-transformers>=5.2.3,<6",
+  "chromadb>=1.5.0,<2",
+  "langchain>=1.2.10,<2",
+  "langchain-ollama>=1.0.1,<2",
+  "langchain-community>=0.4.1,<0.5",
+  "langchain-text-splitters>=1.1.1,<2",
+  "unstructured[md]>=0.20.8,<0.21",
+  "langchain-chroma>=1.1.0,<2",
+  "langchain-huggingface>=1.2.0,<2",
+  "pandas>=1.4.0,<3",
+  "rank-bm25>=0.2.2,<0.3",
+  "flashrank>=0.2.10,<0.3",
+  "fastapi[standard]>=0.131.0,<0.132",
+  "streamlit>=1.54.0,<2",
+  # torch is special: comes from the CUDA index below
+  "torch>=2.10.0,<2.11",
+]
 
+[tool.uv]
+# optional but nice:
+# prefer "uv sync" behavior matching lockfile
+managed = true
 
-[[tool.poetry.source]]
-name = "PyPI"
-priority = "primary"
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
 
-
-[[tool.poetry.source]]
+[[tool.uv.index]]
 name = "torch_cuda"
 url = "https://download.pytorch.org/whl/cu126"
-priority = "supplemental"
+explicit = true
+
+[tool.uv.sources]
+# CUDA index only for torch stack
+torch = { index = "torch_cuda" }
+torchvision = { index = "torch_cuda" }
+torchaudio = { index = "torch_cuda" }
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
