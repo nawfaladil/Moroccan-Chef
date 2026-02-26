@@ -10,7 +10,7 @@ import torch
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_dir = os.path.join(script_dir, "../../data")
+data_dir = os.path.join(script_dir, "../data")
 chroma_path = os.path.join(data_dir, "chroma")
 
 JSON_PATH = os.path.join(data_dir, "recipe_chunks.json")

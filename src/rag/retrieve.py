@@ -7,7 +7,7 @@ from langchain_chroma import Chroma
 from langchain_core.documents import Document
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_path = os.path.join(script_dir, "../../data")
+data_path = os.path.join(script_dir, "../data")
 
 class Retriever:
     def __init__(self, data_path: str = data_path,
