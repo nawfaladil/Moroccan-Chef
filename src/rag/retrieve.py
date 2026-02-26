@@ -6,8 +6,11 @@ from langchain_classic.retrievers import EnsembleRetriever
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(script_dir, "../../data")
+
 class Retriever:
-    def __init__(self, data_path: str = "C:/Users/nawfal/Documents/code/cooking_assistant/data",
+    def __init__(self, data_path: str = data_path,
                  model_name="BAAI/bge-small-en-v1.5",
                  k : int = 1
     ):
